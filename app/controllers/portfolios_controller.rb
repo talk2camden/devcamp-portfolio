@@ -2,9 +2,11 @@ class PortfoliosController < ApplicationController
   def index
     @portfolios_items = Portfolio.all
   end
+
 def new
   @portfolio_item = Portfolio.new
 end
+
 def create
     @portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body))
 
@@ -16,9 +18,11 @@ def create
       end
     end
 end
+
 def edit
   @portfolio_item = Portfolio.find(params[:id])
 end
+
 def update
   @portfolio_item = Portfolio.find(params[:id])
     respond_to do |format|
@@ -29,7 +33,21 @@ def update
       end
     end
 end
+
 def show
   @portfolio_item = Portfolio.find(params[:id])
+end
+
+def destroy
+  # Perform the lookup
+  @portfolio_item = Portfolio.find(params[:id])
+  
+  # Destroy/delete the record
+  @portfolio_item.destroy
+    
+    # Redirect
+    respond_to do |format|
+      format.html { redirect_to portfolios_url, notice: 'Someone has died, and so has this record.' }
+    end
 end
 end
