@@ -42,6 +42,10 @@ module ApplicationHelper
         url: portfolios_path,
         title: 'Portfolio'
       },
+      {
+        url: scooby_news_path,
+        title: 'Scooby News'
+      },
       ]
   end
   
